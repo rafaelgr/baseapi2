@@ -1,0 +1,27 @@
+{
+  "name": "baseapi2",
+  "version": "1.0.0",
+  "description": "A test api",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rafaelgr/baseapi2.git"
+  },
+  "author": "'Rafael <'rafa@myariadna.com'>",
+  "license": "CC-BY-NC-4.0",
+  "bugs": {
+    "url": "https://github.com/rafaelgr/baseapi2/issues"
+  },
+  "homepage": "https://github.com/rafaelgr/baseapi2#readme",
+  "dependencies": {
+    "asw_basepkg": "^1.0.0",
+    "body-parser": "^1.15.2",
+    "cors": "^2.7.1",
+    "express": "^4.14.0",
+    "moment": "^2.14.1",
+    "morgan": "^1.7.0"
+  }
+}
