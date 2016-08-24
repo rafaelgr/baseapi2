@@ -5,7 +5,8 @@
 var express = require('express'),
     bodyParser = require('body-parser'),
     cors = require('cors'),
-    moment = require('moment');
+    moment = require('moment'),
+    morgan = require('morgan');
 
 // load default configuration
 var cfg = require('./config/config.json');
@@ -25,6 +26,12 @@ app.use(cors());
 // static html server
 app.use(express.static(__dirname + "/public"));
 
+// morgan log if we aren't testing
+if (process.env.NODE_ENV != "TEST"){
+    //use morgan to log at command line
+    app.use(morgan('combined')); //'combined' outputs the Apache style LOGs
+}
+
 // mount controllers for routes
 var echo = require('./controllers/echo_controller');
 
@@ -34,6 +41,7 @@ app.use('/api/echo', echo);
 // general API to export
 
 var appAPI = {
+    app: app,
     init: function (config) {
         // we use default o passed config
         if (config) {
@@ -52,9 +60,7 @@ var appAPI = {
 }
 
 if (process.env.NODE_ENV == "DEV"){
-    appAPI.init({
-        apiPort: 8887
-    });
+    appAPI.init();
 }
 
 
