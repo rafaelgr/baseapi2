@@ -1,12 +1,14 @@
 {
-  "name": "baseapi2",
+  "name": "asw_baseapi2",
   "description": "A test api",
   "main": "app.js",
   "scripts": {
     "start": "SET NODE_ENV=DEV && node app.js",
     "commit": "git cz",
+    "copy-sql": "copy .\\node_modules\\asw_basepkg\\sql\\*.* .\\sql",
     "report-coverage": "cat ./coverage/lcov.info | codecov",
     "check-coverage": "istanbul check-coverage --statements 50 --branches 10 --functions 50 --lines 50",
+    "test-copy": "npm run copy-sql && istanbul cover node_modules/mocha/bin/_mocha -- -R spec",
     "test": "istanbul cover node_modules/mocha/bin/_mocha -- -R spec",
     "semantic-release": "semantic-release pre && npm publish && semantic-release post"
   },
