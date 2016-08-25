@@ -10,7 +10,7 @@ router.get('/', function(req, res){
     if (req.query.text) {
         txt = req.query.text;
     }
-    res.send(txt);
+    res.json(txt);
 });
 
 module.exports = router;
