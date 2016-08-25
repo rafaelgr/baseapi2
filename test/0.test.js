@@ -2,6 +2,7 @@
  * 0.test.js
  * Previous to all test we have to confirm
  * that we have a database and the correct tables in it
+ * -- update base pkg --
 */
 process.env.NODE_ENV = "TEST";
 
