@@ -7,4 +7,4 @@
 [![npm](https://img.shields.io/npm/dt/asw_baseapi2.svg?maxAge=2592000)](https://www.npmjs.com/package/asw_baseapi2)
 [![Dependency Status](https://david-dm.org/rafaelgr/baseapi2.svg)](https://david-dm.org/rafaelgr/baseapi2)
 [![devDependency Status](https://david-dm.org/rafaelgr/baseapi2/dev-status.svg)](https://david-dm.org/rafaelgr/baseapi2#info=devDependencies)
-[![Codecov](https://img.shields.io/codecov/c/github/rafaelgr/baseapi2.svg?maxAge=2592000)](https://codecov.io/gh/rafaelgr/baseapi2)
+[![Coverage Status](https://coveralls.io/repos/github/rafaelgr/baseapi2/badge.svg?branch=master)](https://coveralls.io/github/rafaelgr/baseapi2?branch=master)
