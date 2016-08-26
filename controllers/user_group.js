@@ -20,7 +20,19 @@ router.get('/', function (req, res) {
 router.post('/', function (req, res) {
     var test = req.query.test && (req.query.test == 'true');
     var userGroup = req.body;
-    userGroupDb.post(userGroup, function (err, group) {
+    userGroupDb.post(userGroup, function (err, groups) {
+        if (err) {
+            res.status(500).send(err.message);
+        } else {
+            res.json(groups);
+        }
+    }, test);
+});
+
+router.get('/:id', function(req, res){
+    var test = req.query.test && (req.query.test == "true");
+    var id = req.params.id;
+    userGroupDb.getById(id, function(err, group){
         if (err) {
             res.status(500).send(err.message);
         } else {

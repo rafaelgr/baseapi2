@@ -39,12 +39,11 @@ describe("User Group API Test", function () {
                 expect(res).to.have.a.property("body");
                 var g = res.body;
                 expect(g).to.have.a.property("id");
-                tId = res.id;
+                tId = g.id;
                 done();
             });
     });
     it("GET/id should return the user group with this id ", function (done) {
-        /*
         chai.request(app)
             .get('/api/user_group/' + tId + '?test=true')
             .end(function (err, res) {
@@ -61,8 +60,6 @@ describe("User Group API Test", function () {
                 expect(t).to.deep.equal(expected);
                 done();
             });
-            */
-            done();
     });
     it("PUT/id should modify the user group with that id");
     it("DELETE/id should delete the user group with that id");
@@ -72,6 +69,6 @@ describe("User Group API Test", function () {
             expect(err).to.be.null;
             done();
         }, true);
-    })
+    });
 });
 
