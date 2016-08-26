@@ -97,6 +97,15 @@ describe("User Group API Test", function () {
                 }, true)
             });
     });
+    it("GET/id should return status 404 when user group is not found ", function (done) {
+        chai.request(app)
+            .get('/api/user_group/-1?test=true')
+            .end(function (err, res) {
+                expect(err).not.to.be.null;
+                expect(res).to.have.a.property("status", 404);
+                done();
+            });
+    });
     after(function (done) {
         // after all delete records
         bpkg.dbCon.execSql('delete_test.sql', function (err) {

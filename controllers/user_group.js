@@ -32,12 +32,10 @@ router.post('/', function (req, res) {
 router.get('/:id', function(req, res){
     var test = req.query.test && (req.query.test == "true");
     var id = req.params.id;
-    userGroupDb.getById(id, function(err, group){
-        if (err) {
-            res.status(500).send(err.message);
-        } else {
-            res.json(group);
-        }
+    userGroupDb.getById(id, function(err, groups){
+        if (err) return res.status(500).send(err.message);
+        if (groups.length == 0) return res.status(404).send('User group not found');
+        res.json(groups);
     }, test);
 });
 

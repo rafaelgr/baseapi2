@@ -47,6 +47,11 @@
 				"tags": [
 					"User groups"
 				],
+				"parameters": [
+					{
+						"$ref": "#/parameters/test"
+					}
+				],
 				"responses": {
 					"200": {
 						"description": "A list of user groups",
@@ -72,6 +77,9 @@
 				],
 				"parameters": [
 					{
+						"$ref": "#/parameters/test"
+					},
+					{
 						"$ref": "#/parameters/userGroup"
 					}
 				],
@@ -96,6 +104,9 @@
 					"User groups"
 				],
 				"parameters": [
+					{
+						"$ref": "#/parameters/test"
+					},
 					{
 						"$ref": "#/parameters/id"
 					}
@@ -123,6 +134,9 @@
 				],
 				"parameters": [
 					{
+						"$ref": "#/parameters/test"
+					},
+					{
 						"$ref": "#/parameters/id"
 					},
 					{
@@ -149,6 +163,9 @@
 				],
 				"parameters": [
 					{
+						"$ref": "#/parameters/test"
+					},
+					{
 						"$ref": "#/parameters/id"
 					}
 				],
@@ -168,6 +185,11 @@
 				"description": "Returns an array with all users in the database",
 				"tags": [
 					"User"
+				],
+				"parameters": [
+					{
+						"$ref": "#/parameters/test"
+					}
 				],
 				"responses": {
 					"200": {
@@ -194,6 +216,9 @@
 				],
 				"parameters": [
 					{
+						"$ref": "#/parameters/test"
+					},
+					{
 						"$ref": "#/parameters/user"
 					}
 				],
@@ -218,6 +243,9 @@
 					"User"
 				],
 				"parameters": [
+					{
+						"$ref": "#/parameters/test"
+					},
 					{
 						"$ref": "#/parameters/id"
 					}
@@ -245,6 +273,9 @@
 				],
 				"parameters": [
 					{
+						"$ref": "#/parameters/test"
+					},
+					{
 						"$ref": "#/parameters/id"
 					},
 					{
@@ -270,6 +301,9 @@
 					"User"
 				],
 				"parameters": [
+					{
+						"$ref": "#/parameters/test"
+					},
 					{
 						"$ref": "#/parameters/id"
 					}
@@ -408,6 +442,13 @@
 			"description": "String that's going to be echoed",
 			"required": false,
 			"type": "string"
+		},
+		"test": {
+			"name": "test",
+			"in": "query",
+			"description": "Indicates if test database is used (default 'false')",
+			"required": false,
+			"type": "boolean"
 		}
 	}
 }

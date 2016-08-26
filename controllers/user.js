@@ -32,12 +32,10 @@ router.post('/', function (req, res) {
 router.get('/:id', function(req, res){
     var test = req.query.test && (req.query.test == "true");
     var id = req.params.id;
-    userDb.getById(id, function(err, group){
-        if (err) {
-            res.status(500).send(err.message);
-        } else {
-            res.json(group);
-        }
+    userDb.getById(id, function(err, users){
+        if (err) return res.status(500).send(err.message);
+        if (users.length == 0) return res.status(404).send('User not found');
+        res.json(users);
     }, test);
 });
 
