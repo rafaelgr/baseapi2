@@ -34,11 +34,13 @@ if (process.env.NODE_ENV != "TEST"){
 
 // mount controllers for routes
 var echo = require('./controllers/echo');
-var user_group = require('./controllers/user_group')
+var user_group = require('./controllers/user_group');
+var user = require('./controllers/user');
 
 // registering routes
 app.use('/api/echo', echo);
 app.use('/api/user_group', user_group);
+app.use('/api/user', user);
 
 // general API to export
 
