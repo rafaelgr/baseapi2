@@ -1,0 +1,277 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "title": "BASEAPI APP",
+        "version": "1.0.0",
+        "description": "This is a test api that runs with swagger.\nThe idea is to build an operational API with all things a developer need\nThis file uses almost every single aspect of the [Open API Specification](https://openapis.org/).  \nThis API will use JSON.  \nJSON looks like this:  \n\n```JSON\n{\n  \"key\": \"value\",\n  \"anotherKey\": \"anotherValue\"\n}\n```    \n",
+        "termsOfService": "http://www.ariadnasw.com/aviso-legal/",
+        "contact": {
+            "name": "Rafael Garcí­a",
+            "email": "rafa@myariadna.com"
+        },
+        "license": {
+            "name": "CC BY-NC 4.0",
+            "url": "https://creativecommons.org/licenses/by-nc/4.0/"
+        }
+    },
+    "tags": [
+        {
+            "name": "User groups",
+            "description": "User groups functions related"
+        },
+        {
+            "name": "User",
+            "description": "User functions related"
+        },
+        {
+            "name": "Utilities",
+            "description": "Some utilies for testers"
+        }
+    ],
+    "host": "ariadna.myariadna.com:9080",
+    "basePath": "/",
+    "schemes": [
+        "http"
+    ],
+    "consumes": [
+        "application/json"
+    ],
+    "produces": [
+        "application/json"
+    ],
+    "paths": {
+        "/api": {
+            "get": {
+                "summary": "An external test",
+                "description": "Testing how swagger works",
+                "tags": [
+                    "Utilities"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "My own test"
+                    }
+                }
+            }
+        },
+        "/usergroup": {
+            "get": {
+                "summary": "Get all user groups",
+                "description": "Returns an array with all user groups in the database",
+                "tags": [
+                    "User groups"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "A list of user groups",
+                        "schema": {
+                            "title": "UserGroups",
+                            "description": "A user groups array",
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/UserGroup"
+                            }
+                        }
+                    },
+                    "500": {
+                        "$ref": "#/responses/ErrorResponse"
+                    }
+                }
+            },
+            "post": {
+                "summary": "Create a new user group",
+                "description": "Creates a new user group using the object passed in parameters",
+                "tags": [
+                    "User groups"
+                ],
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/userGroup"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "User group succesfully created",
+                        "schema": {
+                            "$ref": "#/definitions/UserGroup"
+                        }
+                    },
+                    "500": {
+                        "$ref": "#/responses/ErrorResponse"
+                    }
+                }
+            }
+        },
+        "/usergroup/{id}": {
+            "get": {
+                "summary": "Get a user group by ID",
+                "description": "Returns the user group with an id that matches the parameter",
+                "tags": [
+                    "User groups"
+                ],
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/id"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "A user group",
+                        "schema": {
+                            "$ref": "#/definitions/UserGroup"
+                        }
+                    },
+                    "404": {
+                        "$ref": "#/responses/UserGroupNotFoundResponse"
+                    },
+                    "500": {
+                        "$ref": "#/responses/ErrorResponse"
+                    }
+                }
+            },
+            "put": {
+                "summary": "Modify a user group",
+                "description": "Modifies the user group that matches id parameter according to the object passed in body",
+                "tags": [
+                    "User groups"
+                ],
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/id"
+                    },
+                    {
+                        "$ref": "#/parameters/userGroup"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "User group successfully modified",
+                        "schema": {
+                            "$ref": "#/definitions/UserGroup"
+                        }
+                    },
+                    "500": {
+                        "$ref": "#/responses/ErrorResponse"
+                    }
+                }
+            },
+            "delete": {
+                "summary": "Deletes a user group",
+                "description": "Removes the user group whose id matches the given parameters",
+                "tags": [
+                    "User groups"
+                ],
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/id"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "User group sucessfully removed"
+                    },
+                    "500": {
+                        "$ref": "#/responses/ErrorResponse"
+                    }
+                }
+            }
+        },
+        "/echo": {
+            "get": {
+                "tags": [
+                    "Utilities"
+                ],
+                "description": "Returns the string passed in parameters",
+                "operationId": "hello",
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/echoString"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "schema": {
+                            "$ref": "#/definitions/HelloWorldResponse"
+                        }
+                    },
+                    "default": {
+                        "description": "Error",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    }
+                }
+            }
+        },
+        "/swagger": {}
+    },
+    "definitions": {
+        "Error": {
+            "title": "Error",
+            "description": "An error object that contains a message",
+            "properties": {
+                "message": {
+                    "type": "string"
+                }
+            }
+        },
+        "UserGroup": {
+            "title": "UserGroup",
+            "description": "A UserGroup object",
+            "properties": {
+                "id": {
+                    "type": "integer"
+                },
+                "name": {
+                    "type": "string"
+                }
+            }
+        },
+        "HelloWorldResponse": {
+            "required": [
+                "message"
+            ],
+            "properties": {
+                "message": {
+                    "type": "string"
+                }
+            }
+        }
+    },
+    "responses": {
+        "ErrorResponse": {
+            "description": "A standard error response",
+            "schema": {
+                "$ref": "#/definitions/Error"
+            }
+        },
+        "UserGroupNotFoundResponse": {
+            "description": "The user group doesn't exist (User group not found)"
+        }
+    },
+    "parameters": {
+        "id": {
+            "name": "id",
+            "in": "path",
+            "description": "An id used for search an specific object",
+            "required": true,
+            "type": "integer"
+        },
+        "userGroup": {
+            "name": "userGroup",
+            "in": "body",
+            "description": "A UserGroup object",
+            "schema": {
+                "$ref": "#/definitions/UserGroup"
+            }
+        },
+        "echoString": {
+            "name": "echoString",
+            "in": "query",
+            "description": "The name of the person to whom to say hello",
+            "required": false,
+            "type": "string"
+        }
+    }
+}
