@@ -41,4 +41,30 @@ router.get('/:id', function(req, res){
     }, test);
 });
 
+router.put('/:id', function(req, res){
+    var test = req.query.test && (req.query.test == "true");
+    var id = req.params.id;
+    var userGroup = req.body;
+    userGroupDb.put(userGroup, function(err, group){
+        if (err) {
+            res.status(500).send(err.message);
+        } else {
+            res.json(group);
+        }
+    }, test);
+});
+
+router.delete('/:id', function(req, res){
+    var test = req.query.test && (req.query.test == "true");
+    var id = req.params.id;
+    var userGroup = req.body;
+    userGroupDb.delete(userGroup, function(err, group){
+        if (err) {
+            res.status(500).send(err.message);
+        } else {
+            res.json(group);
+        }
+    }, test);
+});
+
 module.exports = router;

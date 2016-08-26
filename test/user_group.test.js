@@ -61,8 +61,42 @@ describe("User Group API Test", function () {
                 done();
             });
     });
-    it("PUT/id should modify the user group with that id");
-    it("DELETE/id should delete the user group with that id");
+    it("PUT/id should modify the user group with that id", function (done) {
+        chai.request(app)
+            .put('/api/user_group/' + tId + '?test=true')
+            .send({
+                id: tId,
+                name: "TestUserGroupX"
+            })
+            .end(function (err, res) {
+                expect(err).to.be.null;
+                expect(res).to.have.a.property("body");
+                var g = res.body;
+                var expected = {
+                    id: tId,
+                    name: "TestUserGroupX"
+                }
+                expect(g).to.deep.equal(expected);
+                done();
+            });
+    });
+    it("DELETE/id should delete the user group with that id", function (done) {
+        chai.request(app)
+            .delete('/api/user_group/' + tId + '?test=true')
+            .send({
+                id: tId,
+                name: "TestUserGroupX"
+            })
+            .end(function (err, res) {
+                expect(err).to.be.null;
+                // check that record no loger exists
+                bpkg.userGroup.getById(tId, function (err, res) {
+                    expect(err).to.be.null;
+                    expect(res).to.have.length(0);
+                    done();
+                }, true)
+            });
+    });
     after(function (done) {
         // after all delete records
         bpkg.dbCon.execSql('delete_test.sql', function (err) {
